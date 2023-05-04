@@ -1,0 +1,56 @@
+body, html{
+    height: 100%;
+}
+body{
+    padding: 0;
+    margin: 0;
+    background-color: #ddd;
+    font-family: cursive;
+}
+section{
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+}
+.content{
+    background-color: #eee;
+    border-radius: 30px;
+    padding: 20px 30px;
+    text-align: center;
+}
+.content ol{
+    list-style-type: none;
+    padding: 0;
+    text-transform: capitalize;
+    font-size: 18px;
+}
+p{
+    margin-bottom: 10px;
+}
+button{
+    padding: 7px;
+    font-size: 17px;
+    font-family: cursive;
+    text-transform: capitalize;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #fff;
+    transition: 300ms;
+}
+button:hover{
+    background-color: #000;
+    color: #fff;
+}
+input{
+    padding: 7px;
+    border: none;
+    border-radius: 5px;
+}
+h4{
+    color: red;
+    text-transform: none;
+    font-weight: 100;
+    font-size: 15px;
+}
