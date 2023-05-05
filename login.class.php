@@ -1,10 +1,8 @@
 <?php
-
-include('database.php');
-
+session_start();
 class Login extends Db {
     
-    protected function checkUser($email){
+    protected function getUser($email, $password){
         
         $stmt = $this->connect()->prepare('SELECT password FROM users WHERE email = :email');
 
@@ -14,13 +12,28 @@ class Login extends Db {
             exit();
         }
 
+        
         if($stmt -> rowCount() === 0){
             $stmt = null;
-            $_SESSION['e-email'] = 'There is no existing account using that email address';
-            header('Location: index.php');
+            header('Location: index.php?error=usernotfound');
+            $_SESSION['e-login'] = 'User does not exist';
             exit();
         }
 
+        $passHashed = $stmt->fetchAll();
+
+        if(!password_verify($password, $passHashed[0]['password'])){
+            $stmt = null;
+            header('Location: index.php?error=wrongpassword');
+            $_SESSION['e-login'] = 'Incorrect email or password';
+            exit();
+        }elseif(password_verify($password, $passHashed[0]['password'])){
+            $_SESSION['login'] = true;
+            $stmt = null;
+        }
+        
+
         $stmt = null; 
     }
+
 }

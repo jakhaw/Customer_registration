@@ -1,12 +1,9 @@
 <?php
     session_start();
-
-    if($_SERVER['REQUEST_METHOD'] === 'POST'){
-        header('Location: login.php');
+    if(isset($_SESSION['login'])){
+        header('Location: account.php');
+        exit();
     }
-
-    
-    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,29 +20,23 @@
             <h1>Welcome to our website</h1>
             <p>Sign in to Your account</p>
             <div class="login">
-                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+                <form action="login.php" method="POST">
                     <ol>
                         <li>
                             <p>email:</p>
                             <input type="text" name="login_email">
-                            <?php
-                            if(isset($_SESSION['e-email'])){
-                                echo '<h4>'.$_SESSION['e-email'].'</h4>';
-                                unset($_SESSION['e-email']);
-                            }
-                            ?>
                         </li>
                         <li>
                             <p>password:</p>
                             <input type="password" name="login_password">
-                            <?php
-                            if(isset($_SESSION['e-password'])){
-                                echo '<h4>'.$_SESSION['e-password'].'</h4>';
-                                unset($_SESSION['e-password']);
-                            }
-                            ?>
                         </li>
                     </ol>
+                    <?php
+                    if(isset($_SESSION['e-login'])){
+                        echo '<h4>'.$_SESSION['e-login'].'</h4>';
+                        unset($_SESSION['e-login']);
+                    }
+                    ?>
                     <button type="submit" name="signin">sign in</button>
                 </form>
                 <p>
