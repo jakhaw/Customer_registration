@@ -1,5 +1,4 @@
 <?php
-session_start();
 class Login extends Db {
     
     protected function getUser($email, $password){

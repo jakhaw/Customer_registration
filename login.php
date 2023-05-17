@@ -1,12 +1,12 @@
 <?php
-
-if(!isset($_POST['signin'])){
+session_start();
+if(!isset($_SESSION['signin'])){
     header('Location: index.php');
     exit();
 }
 
-$email = $_POST['login_email'];
-$pass = $_POST['login_password'];
+$email = $_SESSION['login_email'];
+$pass = $_SESSION['login_password'];
 
 include('database.php');
 include('login.class.php');

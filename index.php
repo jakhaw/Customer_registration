@@ -4,6 +4,12 @@
         header('Location: account.php');
         exit();
     }
+    if(isset($_SERVER['REQUEST_METHOD']) === "POST"){
+        $_SESSION['login_email'] = $_POST['login_email'];
+        $_SESSION['login_password'] = $_POST['login_password'];
+        $_SESSION['signin'] = $_POST['signin'];
+        header('Location: login.php');
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +26,7 @@
             <h1>Welcome to our website</h1>
             <p>Sign in to Your account</p>
             <div class="login">
-                <form action="login.php" method="POST">
+                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
                     <ol>
                         <li>
                             <p>email:</p>
