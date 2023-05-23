@@ -12,13 +12,14 @@ class Singup extends Db{
             exit();
         }
 
-        $resultCheck = true;
         if($stmt -> rowCount() > 0){
-            $resultCheck = false;
+            $stmt = null;
+            header('Location: index.php?error=emailalreadyused');
+            $_SESSION['e-login'] = 'This email is already used';
+            exit();
         }
 
         $stmt = null;
-        return $resultCheck;
     }
 
     protected function setUser($name, $email, $password){

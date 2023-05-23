@@ -1,9 +1,16 @@
 <?php
-    session_start();
-    if(isset($_SESSION['login'])){
-        header('Location: account.php');
-        exit();
-    }
+session_start();
+if(isset($_SESSION['login'])){
+    header('Location: account.php');
+    exit();
+}
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
+    $_SESSION['username'] = $_POST['username'];
+    $_SESSION['password'] = $_POST['password'];
+    $_SESSION['email'] = $_POST['email'];
+    $_SESSION['submit'] = $_POST['submit'];
+    header('Location: signup.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +27,7 @@
             <h1>Welcome to our website</h1>
             <p>Create an account to stay up on date with our products</p>
             <div class="registration">
-                <form action="signup.php" method="POST">
+                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
                     <ol>
                         <li>
                             <p>name:</p>

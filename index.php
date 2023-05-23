@@ -4,7 +4,7 @@
         header('Location: account.php');
         exit();
     }
-    if(isset($_SERVER['REQUEST_METHOD']) === "POST"){
+    if($_SERVER['REQUEST_METHOD'] === "POST"){
         $_SESSION['login_email'] = $_POST['login_email'];
         $_SESSION['login_password'] = $_POST['login_password'];
         $_SESSION['signin'] = $_POST['signin'];
