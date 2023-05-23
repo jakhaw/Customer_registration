@@ -1,26 +1,6 @@
 <?php
 
-class Singup extends Db{
-
-    protected function checkUser($email){
-
-        $stmt = $this->connect()->prepare('SELECT email FROM users WHERE email = :email;');
-
-        if(!$stmt->execute(['email'=>$email])){
-            $stmt = null;
-            header('Location: index.php?error=stmtfailed');
-            exit();
-        }
-
-        if($stmt -> rowCount() > 0){
-            $stmt = null;
-            header('Location: index.php?error=emailalreadyused');
-            $_SESSION['e-login'] = 'This email is already used';
-            exit();
-        }
-
-        $stmt = null;
-    }
+class Signup extends Db{
 
     protected function setUser($name, $email, $password){
 
@@ -30,7 +10,7 @@ class Singup extends Db{
 
         if(!$stmt->execute(['name'=>$name, 'password'=>$hashpassword, 'email'=>$email])){
             $stmt = null;
-            header('Location: index.php?error=stmtfailed');
+            header('Location: signuppage.php?error=stmtfailed');
             exit();
         }
 
